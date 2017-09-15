@@ -1,37 +1,61 @@
+int rollTotal;
+
 void setup()
 {
-  size(400,400);
+  size(900,600);
 }
 void draw()
 {
-  for (int j = 1; j <= 7; j++) {
-    for (int i = 1; i <= 7; i++) {
+  background(100);
+  for (int j = 1; j <= 11; j++) {
+    for (int i = 1; i <= 17; i++) {
       Die one = new Die(50*i-25,50*j-25);
+      one.roll();
       one.show();
+      textSize(20);
     }
   }
+  text(rollTotal, 435, 592);
   noLoop();
 }
 void mousePressed()
 {
-	redraw();
+  rollTotal  = 0;
+  redraw();
 }
 class Die //models one single dice cube
 {
-  int myX,myY,mySize;
-	Die(int x, int y) //constructor
-	{
-		myX = x;
+  int myX,myY,myRoll;
+  Die(int x, int y) //constructor
+  {
+    myX = x;
     myY = y;
-    mySize = 50;
-	}
-	void roll()
-	{
-		//your code here
-	}
-	void show()
-	{
-		fill(255);
-    rect(myX,myY,mySize,mySize,10);
-	}
+  }
+  void roll()
+  {
+    myRoll = (int)(Math.random()*6+1);
+    rollTotal = rollTotal + myRoll;
+  }
+  void show()
+  {
+    fill(255);
+    rect(myX,myY,50,50,10);
+    
+    fill(0);
+    if (myRoll%2 == 1) {
+      ellipse(myX+25, myY+25, 5, 5);
+    }
+    if (myRoll > 1) {
+      ellipse(myX+13, myY+13, 5, 5);
+      ellipse(myX+37, myY+37, 5, 5);
+    }
+    if (myRoll > 3) {
+      ellipse(myX+13, myY+37, 5, 5);
+      ellipse(myX+37, myY+13, 5, 5);
+    }
+    if (myRoll == 6) {
+      ellipse(myX+25, myY+13, 5, 5);
+      ellipse(myX+25, myY+37, 5, 5);
+    }
+  }
 }
