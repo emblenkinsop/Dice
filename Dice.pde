@@ -2,19 +2,21 @@ int rollTotal;
 
 void setup()
 {
-  size(900,600);
+  size(900,650);
 }
 void draw()
 {
-  background(100);
+  background(50 + (int)(Math.random()*51), 50 + (int)(Math.random()*51), 50 + (int)(Math.random()*51));
   for (int j = 1; j <= 11; j++) {
     for (int i = 1; i <= 17; i++) {
       Die one = new Die(50*i-25,50*j-25);
       one.roll();
       one.show();
       textSize(20);
+      stroke(255);
     }
   }
+  fill(0);
   text(rollTotal, 435, 592);
   noLoop();
 }
@@ -38,10 +40,10 @@ class Die //models one single dice cube
   }
   void show()
   {
-    fill(255);
+    fill(150 + (int)(Math.random()*51), 150 + (int)(Math.random()*51), 150 + (int)(Math.random()*51));
     rect(myX,myY,50,50,10);
     
-    fill(0);
+    fill((int)(Math.random()*251), (int)(Math.random()*251), (int)(Math.random()*251));
     if (myRoll%2 == 1) {
       ellipse(myX+25, myY+25, 5, 5);
     }
