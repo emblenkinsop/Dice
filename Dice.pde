@@ -3,6 +3,8 @@ int rollTotal;
 void setup()
 {
   size(900,650);
+  stroke(255);
+  textSize(30);
 }
 void draw()
 {
@@ -12,12 +14,10 @@ void draw()
       Die one = new Die(50*i-25,50*j-25);
       one.roll();
       one.show();
-      textSize(20);
-      stroke(255);
     }
   }
   fill(0);
-  text(rollTotal, 435, 592);
+  text(rollTotal+" pips", 380, 625);
   noLoop();
 }
 void mousePressed()
@@ -40,7 +40,7 @@ class Die //models one single dice cube
   }
   void show()
   {
-    fill(150 + (int)(Math.random()*51), 150 + (int)(Math.random()*51), 150 + (int)(Math.random()*51));
+    fill((int)(Math.random()*251), (int)(Math.random()*251), (int)(Math.random()*251));
     rect(myX,myY,50,50,10);
     
     fill((int)(Math.random()*251), (int)(Math.random()*251), (int)(Math.random()*251));
